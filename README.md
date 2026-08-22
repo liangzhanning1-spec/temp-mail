@@ -16,6 +16,12 @@
 线上实例：[https://1m.de5.net](https://1m.de5.net) —— 无需注册，打开即可体验完整功能：
 1 秒生成临时邮箱、4 秒收信、验证码自动高亮、到期自动销毁。推广文章页见 [/blog](https://1m.de5.net/blog)。
 
+![首页 —— 1 秒生成临时邮箱](www/blog-img/shot-1-hero.png)
+
+| 收件箱 —— 验证码自动识别高亮 | 移动端收件箱 |
+|:--:|:--:|
+| ![收件箱](www/blog-img/shot-2-inbox.png) | ![移动端](www/blog-img/shot-3-inbox-mobile-v2.png) |
+
 ## 功能
 
 | 模块 | 说明 |
@@ -35,6 +41,8 @@ public/
 ├── www/                      # 静态前端（Worker assets 直接服务）
 │   ├── index.html            # 首页：生成器 + 首屏收件箱（单页双模式）
 │   ├── blog.html             # 演示博客页（/blog）
+│   ├── terms.html            # 服务条款（/terms）
+│   ├── privacy.html          # 隐私政策（/privacy）
 │   ├── 404.html              # 品牌 404 页
 │   ├── sw.js / manifest.json # PWA
 │   ├── _headers              # 安全响应头（CSP / HSTS 等）
