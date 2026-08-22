@@ -3,6 +3,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/linxk8/-1m-mail?style=social&label=Star)](https://github.com/linxk8/-1m-mail)
 [![GitHub forks](https://img.shields.io/github/forks/linxk8/-1m-mail?style=social)](https://github.com/linxk8/-1m-mail/fork)
 [![License: MIT](https://img.shields.io/badge/License-MIT-4f46e5.svg)](https://github.com/linxk8/-1m-mail/blob/main/LICENSE)
+[![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/linxk8/-1m-mail)
 
 1 秒生成、无需注册、限时有效、阅后即焚的临时邮箱服务，基于 Cloudflare Workers 构建，可部署到你自己的域名。
 前端原生 HTML/CSS/JS（无框架），后端 Hono + D1，收信走 Cloudflare Email Routing，支持 PWA 安装。
@@ -43,11 +44,30 @@ public/
 │   ├── schema.sql            # D1 建表（inboxes / messages）
 │   ├── wrangler.toml         # assets + D1 绑定 + cron 触发器
 │   └── package.json
+├── .github/workflows/deploy.yml  # 一键部署：D1 自动建库 + wrangler deploy
 ├── LICENSE                   # MIT
 └── README.md
 ```
 
 ## 部署到自己的域名
+
+### ⚡ 一键部署（推荐）
+
+点击上面的 **Deploy to Cloudflare Workers** 按钮：
+
+1. 登录你的 Cloudflare 账号并授权
+2. 选择本仓库，点击 Deploy
+3. GitHub Actions 会自动完成：安装依赖 → 创建 D1 数据库（de5_mailhub）→ 初始化表结构 → 部署 Worker
+
+部署完成后还剩两个需在 Cloudflare Dashboard 手动操作的步骤：
+
+- **收件域名**：Workers → 你的 worker → Settings → Variables 添加 `MAIL_DOMAIN` = 你的域名（如 `mail.example.com`）
+- **自定义域**：Settings → Domains & Routes → 添加你的域名
+- **收信**：域名 → Email → Email Routing → Routing rules → **Catch-all** → Send to a Worker → 你的 worker 名
+
+> 之后每次 `git push` 到 main 都会自动重新部署。D1 数据库只需第一次创建。
+
+### 手动部署
 
 前置：一个 Cloudflare 账号 + 一个托管在 Cloudflare 的域名（如 `mail.example.com`）。
 
