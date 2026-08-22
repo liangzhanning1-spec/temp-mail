@@ -2157,7 +2157,7 @@ footer {
   <div class="container">
     <div class="section-eyebrow reveal">// FEATURES</div>
     <h2 class="section-heading reveal reveal-d1">临时邮箱，<span class="italic">就该这样</span>。</h2>
-    <p class="section-desc reveal reveal-d2">为接收验证码而生，不为留存而存在。<br>没有注册，没有隐私条款，没有垃圾邮件。</p>
+    <p class="section-desc reveal reveal-d2">为接收验证码而生，不为留存而存在。<br>没有注册，没有繁琐条款，没有垃圾邮件。</p>
 
     <!-- Feature 1: 即时收信 -->
     <div class="feature-row" style="margin-top:4rem;">
@@ -2272,6 +2272,8 @@ footer {
       <a href="#features">特性</a>
       <a href="#usecases">使用场景</a>
       <a href="/blog">博客</a>
+      <a href="/terms">服务条款</a>
+      <a href="/privacy">隐私政策</a>
       <a href="https://github.com/linxk8/-1m-mail" target="_blank" rel="noopener">GitHub</a>
     </div>
   </div>
@@ -2329,37 +2331,6 @@ marqueeItems.forEach(i => {
   mh += `<div class="marquee-item ${i.cls}">${i.text}<span class="marquee-sep"></span></div>`;
 });
 document.getElementById('marqueeTrack').innerHTML = mh + mh;
-
-// ═══ 动态域名：部署到自己的域名时自动替换站点内域名展示 ═══
-(function applyDomain() {
-  const host = location.hostname;
-  const origin = location.origin;
-  const set = (sel, attr, val) => { const el = document.querySelector(sel); if (el) el.setAttribute(attr, val); };
-  const setAll = (sel, fn) => document.querySelectorAll(sel).forEach(fn);
-
-  document.title = document.title.replace(/1m\.de5\.net/g, host);
-  set('link[rel="canonical"]', 'href', origin + '/');
-  set('meta[property="og:url"]', 'content', origin + '/');
-  set('meta[property="og:site_name"]', 'content', host);
-  set('meta[property="og:title"]', 'content', host + ' — 免费临时邮箱 · 1秒生成 · 阅后即焚');
-  set('meta[name="twitter:title"]', 'content', host + ' — 免费临时邮箱 · 1秒生成 · 阅后即焚');
-  setAll('meta[property="og:image"], meta[name="twitter:image"]', (el) => {
-    el.setAttribute('content', el.getAttribute('content').replace(/https:\/\/1m\.de5\.net/g, origin));
-  });
-  // 结构化数据中的域名
-  const ld = document.querySelector('script[type="application/ld+json"]');
-  if (ld) ld.textContent = ld.textContent.replace(/https:\/\/1m\.de5\.net/g, origin).replace(/1m\.de5\.net 临时邮箱/g, host + ' 临时邮箱');
-  // 文本中的域名
-  setAll('.nav-logo-text, .gen-suffix, .footer-brand', (el) => {
-    el.textContent = el.textContent.replace(/1m\.de5\.net/g, host);
-  });
-  setAll('.hero-badge, .hero-hints', (el) => {
-    el.innerHTML = el.innerHTML.replace(/1M\.DE5\.NET/g, host.toUpperCase());
-  });
-  setAll('.push-text, .alias-bubble, .shield-main', (el) => {
-    el.textContent = el.textContent.replace(/1m\.de5\.net/g, host);
-  });
-})();
 
 // ═══ TEMP MAILBOX APP ═══
 const $ = (id) => document.getElementById(id);
@@ -2480,7 +2451,7 @@ async function enterInbox(d) {
   state.lastUnreadCount = 0;
 
   $('mbxAddress').innerHTML =
-    d.address + '<span class="at">@' + location.hostname + '</span>';
+    d.address + '<span class="at">@1m.de5.net</span>';
   showMailbox();
   enterHeroMode();
   history.replaceState(null, '', '?addr=' + encodeURIComponent(d.address));
@@ -2561,7 +2532,7 @@ function stopPolling() {
 function notifyNewMail(m) {
   if (document.hidden && 'Notification' in window && Notification.permission === 'granted') {
     try {
-      new Notification('📬 新邮件到达 ' + location.hostname, {
+      new Notification('📬 新邮件到达 1m.de5.net', {
         body: (m.fromName || m.fromAddr || '未知发件人') + ' · ' + (m.subject || ''),
         icon: '/favicon.svg',
       });
@@ -2822,7 +2793,7 @@ $('ctaBtn').addEventListener('click', () => {
   if (!state.address) setTimeout(() => $('claimInput').focus(), 600);
 });
 $('copyBtn').addEventListener('click', () => {
-  if (state.address) copyText(state.address + '@' + location.hostname, $('copyBtn'), '已复制');
+  if (state.address) copyText(state.address + '@1m.de5.net', $('copyBtn'), '已复制');
 });
 $('newBtn').addEventListener('click', () => {
   const ttl = Number(document.querySelector('#ttlSeg button.active').dataset.ttl);
