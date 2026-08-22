@@ -53,6 +53,8 @@ public/
 
 ### ⚡ 一键部署（推荐）
 
+[![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/linxk8/-1m-mail)
+
 点击上面的 **Deploy to Cloudflare Workers** 按钮：
 
 1. 登录你的 Cloudflare 账号并授权
