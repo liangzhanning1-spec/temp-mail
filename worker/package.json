@@ -1,0 +1,20 @@
+{
+  "name": "1m-mail-worker",
+  "private": true,
+  "version": "1.0.0",
+  "description": "1m.de5.net 临时邮箱 Worker（assets 前端 + 收信 + API + cron 清理）",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "hono": "^4.13.3",
+    "postal-mime": "^3.0.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20260821.1",
+    "typescript": "^5.6.0"
+  }
+}

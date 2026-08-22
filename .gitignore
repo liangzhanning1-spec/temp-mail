@@ -1,0 +1,15 @@
+# 依赖
+node_modules/
+
+# Cloudflare 本地缓存
+.wrangler/
+.dev.vars
+
+# 系统与编辑器
+.DS_Store
+Thumbs.db
+*.local
+*.log
+
+# 备份 / 本地产物
+backups/

@@ -1,0 +1,25 @@
+# 部署前请修改：把 worker 名改为你自己的（如 my-tempmail）
+name = "1m-mail"
+main = "src/index.ts"
+compatibility_date = "2025-05-01"
+compatibility_flags = ["nodejs_compat"]
+
+# 静态前端：www/ 直接由 Worker assets 服务，未命中的 /api/* 才进 fetch 逻辑
+[assets]
+directory = "../www"
+binding = "ASSETS"
+not_found_handling = "404-page"
+
+# 收件域名：部署后设置为你自己的域名（也可以在 dashboard 环境变量里配置同名变量）
+# [vars]
+# MAIL_DOMAIN = "mail.example.com"
+
+# 临时邮箱存储：替换为你自己的 D1 数据库（npx wrangler d1 create de5_mailhub）
+[[d1_databases]]
+binding = "DB"
+database_name = "de5_mailhub"
+database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"
+
+# 每 5 分钟清理过期收件箱与邮件
+[triggers]
+crons = ["*/5 * * * *"]
