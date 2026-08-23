@@ -1,4 +1,4 @@
-# 1m Mail — 免费临时邮箱（开源版）
+# 1m Mail — 免费临时邮箱（开源版）喵
 
 [![GitHub stars](https://img.shields.io/github/stars/linxk8/-1m-mail?style=social&label=Star)](https://github.com/linxk8/-1m-mail)
 [![GitHub forks](https://img.shields.io/github/forks/linxk8/-1m-mail?style=social)](https://github.com/linxk8/-1m-mail/fork)
