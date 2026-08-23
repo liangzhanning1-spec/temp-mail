@@ -284,7 +284,13 @@ nav.scrolled {
   z-index: 0;
   pointer-events: none;
   user-select: none;
+  transition: opacity 0.9s ease;
 }
+
+/* 生成器状态显示纸飞机背景；进入收件箱后交叉淡入信封背景 */
+.hero-bg-img.hero-bg-inbox { opacity: 0; }
+.hero.has-inbox .hero-bg-img { opacity: 0; }
+.hero.has-inbox .hero-bg-img.hero-bg-inbox { opacity: 0.55; }
 
 .hero-grid {
   display: grid;
@@ -2019,6 +2025,11 @@ footer {
     <source srcset="img/hero-bg.avif" type="image/avif">
     <source srcset="img/hero-bg.webp" type="image/webp">
     <img class="hero-bg-img" src="img/hero-bg.jpg" alt="" aria-hidden="true">
+  </picture>
+  <picture>
+    <source srcset="img/hero-bg-inbox.avif" type="image/avif">
+    <source srcset="img/hero-bg-inbox.webp" type="image/webp">
+    <img class="hero-bg-img hero-bg-inbox" src="img/hero-bg-inbox.jpg" alt="" aria-hidden="true">
   </picture>
   <div class="hero-grid" id="heroGrid">
     <!-- Left: Content -->

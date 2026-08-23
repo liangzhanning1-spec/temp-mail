@@ -22,11 +22,28 @@
 |:--:|:--:|
 | ![收件箱](www/blog-img/shot-2-inbox.png) | ![移动端](www/blog-img/shot-3-inbox-mobile-v2.png) |
 
+## 设计亮点
+
+站点不是功能堆砌——首页本身就是一张「产品说明书」，从打开到收信全程有细节可看：
+
+![首屏双态背景切换演示](www/blog-img/hero-transition.webp)
+
+- **Crystal Lumière 设计语言**：暖纸底 + 电光靛蓝 + 珊瑚粉 + 翡翠绿，玻璃拟态卡片、颗粒噪点、柔和光斑与光标聚光，观感轻盈不刺眼
+- **首屏双态背景**：生成器态是纸飞机水晶图，点「生成临时邮箱」后 0.9s 交叉淡入水晶信封背景——发信 → 收信的语义在视觉上完成闭环（纯 CSS，`.hero.has-inbox` 类驱动，零 JS 动画库）
+- **单页双模式**：生成 → 收件箱在首屏内翻转切换，不跳页不刷新；右侧浮动邮件卡片（GitHub / Stripe / Vercel 拟真推送）+ 双光圈旋转 + 鼠标视差
+- **验证码即所得**：OTP 自动识别、高亮放大、一键复制；4 秒轮询，新邮件实时置顶并推送浏览器通知
+- **倒计时仪式感**：渐变进度条、剩余 5 分钟转红预警、一键续期；到期后收件箱自动销毁为「密信已销毁」品牌页，而非冷冰冰的报错
+- **品牌化 404 / 410**：公开链接过期与不存在都有专属品牌页，销毁流程有始有终
+- **排版系统**：Bricolage Grotesque 展示体 + Noto Serif SC 衬线 + JetBrains Mono 等宽，中西混排、字距与基线细节统一
+- **响应式 + PWA**：移动端收件卡片重排为单列、三键横排，可安装、离线可打开首页
+- **多格式图片**：背景与配图 AVIF > WebP > PNG/JPG 按浏览器自动降级，兼顾画质与加载速度
+
 ## 功能
 
 | 模块 | 说明 |
 |------|------|
 | 临时邮箱 | 自定义名或随机生成（10 位，避开易混淆字符），有效期 10 分钟 / 1 小时 / 24 小时 |
+| 首屏双态背景 | 生成器态纸飞机水晶图 ↔ 收件箱态水晶信封图，0.9s 交叉淡入（`.hero.has-inbox`，纯 CSS） |
 | 收信 | Email Routing Catch-all → Worker `email()` → postal-mime 解析 → D1；**仅已生成且未过期的地址收信** |
 | 收件箱 | 4 秒轮询、验证码（OTP）自动识别高亮一键复制、倒计时 + 一键续期、换一个 / 销毁 |
 | 公开链接 | `/inbox/:地址`：有效 302 跳转 / 过期 410「密信已销毁」品牌页 / 不存在 404 品牌页 |
@@ -46,7 +63,7 @@ public/
 │   ├── 404.html              # 品牌 404 页
 │   ├── sw.js / manifest.json # PWA
 │   ├── _headers              # 安全响应头（CSP / HSTS 等）
-│   └── blog-img/ img/        # 配图与背景（AVIF > WebP > PNG/JPG 多格式）
+│   └── blog-img/ img/        # 配图与背景（hero-bg 纸飞机 / hero-bg-inbox 信封，AVIF > WebP > PNG/JPG 多格式）
 ├── worker/                   # Cloudflare Worker 后端
 │   ├── src/index.ts          # REST API / email() 收信 / cron 清理 / 410·404 品牌页
 │   ├── schema.sql            # D1 建表（inboxes / messages）
