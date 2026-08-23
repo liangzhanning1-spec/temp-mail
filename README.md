@@ -1,4 +1,4 @@
-# 1m Mail — 免费临时邮箱（开源版）
+# 1m Mail — 免费临时邮箱（开源版）喵喵喵
 
 [![GitHub stars](https://img.shields.io/github/stars/linxk8/-1m-mail?style=social&label=Star)](https://github.com/linxk8/-1m-mail)
 [![GitHub forks](https://img.shields.io/github/forks/linxk8/-1m-mail?style=social)](https://github.com/linxk8/-1m-mail/fork)
@@ -8,7 +8,7 @@
 1 秒生成、无需注册、限时有效、阅后即焚的临时邮箱服务，基于 Cloudflare Workers 构建，可部署到你自己的域名。
 前端原生 HTML/CSS/JS（无框架），后端 Hono + D1，收信走 Cloudflare Email Routing，支持 PWA 安装。
 
-> ⚠️ 免责声明：本项目仅供合法用途（接收网站注册验证码、一次性试用等）。请遵守你所在地区的法律法规，
+> ⚠️ 免责声明：本项目仅供合法用途（接收网站注册验证码、一次性试用等）。请遵守你所在地区的法律法规,
 > 勿用于垃圾邮件、诈骗或任何滥用场景。部署者需自行对实例的运营负责。
 
 ## 演示站点
