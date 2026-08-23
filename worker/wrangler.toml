@@ -1,5 +1,5 @@
 # 部署前请修改：把 worker 名改为你自己的（如 my-tempmail）
-name = "1m-mail"
+name = "tempmail"
 main = "src/index.ts"
 compatibility_date = "2025-05-01"
 compatibility_flags = ["nodejs_compat"]
@@ -18,7 +18,7 @@ not_found_handling = "404-page"
 [[d1_databases]]
 binding = "DB"
 database_name = "de5_mailhub"
-database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"
+database_id = "f8c70de8-d3b5-4023-a1ae-80dd29baa826"
 
 # 每 5 分钟清理过期收件箱与邮件
 [triggers]
